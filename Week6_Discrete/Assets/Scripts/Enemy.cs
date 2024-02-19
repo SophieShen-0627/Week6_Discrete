@@ -76,6 +76,7 @@ public class Enemy : MonoBehaviour
         GetComponentInChildren<SpriteRenderer>().enabled = false;
 
         if (CarryDashPoint) Instantiate(DashPoint, transform.position, Quaternion.identity);
+        spawner.OneEnemyDie = true;
         spawner.CurrentEnemies.Remove(this.gameObject);
     }
     IEnumerator DoHitStop()

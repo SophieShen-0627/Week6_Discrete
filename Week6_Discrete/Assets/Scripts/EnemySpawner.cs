@@ -5,15 +5,17 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public List<GameObject> CurrentEnemies = new List<GameObject>();
+    public bool OneEnemyDie = false;
 
     [SerializeField] List<GameObject> EnemyKinds = new List<GameObject>();
 
-    [SerializeField] int EnemySpawnNumEveryTurn = 5;
-    [SerializeField] float EnemySpawnInterval = 5;
+    [SerializeField] int EnemySpawnNumEveryTurn = 2;
+    [SerializeField] float EnemySpawnInterval = 2;
     [SerializeField] float PossibilityOfEnemy2 = 0.3f;
 
     private GameObject[] enemies;
     private float EnemyInitialDistanceToPoints;
+    private float AccurateEnemySpawnNum;
 
 
 
@@ -21,6 +23,7 @@ public class EnemySpawner : MonoBehaviour
     {
         enemies = EnemyKinds.ToArray();
         EnemyInitialDistanceToPoints = DataManager.datas.EnemyInitialDistanceToPoints;
+        AccurateEnemySpawnNum = EnemySpawnNumEveryTurn;
 
         StartCoroutine(Spawn());
     }
@@ -28,7 +31,17 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (OneEnemyDie)
+        {
+            if (EnemySpawnInterval > 1.5f) EnemySpawnInterval -= 0.1f;
+
+            AccurateEnemySpawnNum += 0.3f;
+            EnemySpawnNumEveryTurn = Mathf.FloorToInt(Random.Range(AccurateEnemySpawnNum * 0.5f, AccurateEnemySpawnNum + 1));
+            if (PossibilityOfEnemy2 <= 0.8f) PossibilityOfEnemy2 += 0.04f;
+
+            OneEnemyDie = false;
+        }
+
     }
 
     IEnumerator Spawn()

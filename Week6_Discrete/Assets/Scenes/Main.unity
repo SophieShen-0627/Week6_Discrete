@@ -590,8 +590,8 @@ MonoBehaviour:
   EnemyKinds:
   - {fileID: 6005836534453577153, guid: b381ee39b95366748a0ba7b12c7fe43c, type: 3}
   - {fileID: 7064823950758931642, guid: 36b9edbcda487c44badfca11638b041a, type: 3}
-  EnemySpawnNumEveryTurn: 5
-  EnemySpawnInterval: 5
+  EnemySpawnNumEveryTurn: 2
+  EnemySpawnInterval: 3
   PossibilityOfEnemy2: 0.3
 --- !u!4 &1052296987
 Transform:
