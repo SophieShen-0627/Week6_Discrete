@@ -75,6 +75,8 @@ public class Enemy : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         GetComponentInChildren<SpriteRenderer>().enabled = false;
 
+        FindObjectOfType<CameraShake>().StartShake(0.6f, 2f, 2f);
+
         if (CarryDashPoint) Instantiate(DashPoint, transform.position, Quaternion.identity);
         spawner.OneEnemyDie = true;
         spawner.CurrentEnemies.Remove(this.gameObject);
