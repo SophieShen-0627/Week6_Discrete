@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public GameObject DashPoint;
     [SerializeField] bool CarryDashPoint = false;
+    [SerializeField] ParticleSystem DeathParticle;
     private float HitStopTime = 0.1f;
     private float MovingSpeed = 5f;
 
@@ -75,11 +76,13 @@ public class Enemy : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         GetComponentInChildren<SpriteRenderer>().enabled = false;
 
-        FindObjectOfType<CameraShake>().StartShake(0.6f, 2f, 2f);
+        FindObjectOfType<CameraShake>().StartShake(0.1f, 1f, 1f);
+        DeathParticle.Play();
 
         if (CarryDashPoint) Instantiate(DashPoint, transform.position, Quaternion.identity);
         spawner.OneEnemyDie = true;
         spawner.CurrentEnemies.Remove(this.gameObject);
+
     }
     IEnumerator DoHitStop()
     {

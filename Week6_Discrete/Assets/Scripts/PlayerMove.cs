@@ -8,6 +8,8 @@ public class PlayerMove : MonoBehaviour
     public Vector3 Target;
     public bool IsMoving = false;
 
+    [SerializeField] ParticleSystem StartParticle;
+
 
     private void Start()
     {
@@ -21,6 +23,7 @@ public class PlayerMove : MonoBehaviour
         {
             StartCoroutine(Move(Target));
             IsMoving = true;
+            StartParticle.Play();
         }
     }
 

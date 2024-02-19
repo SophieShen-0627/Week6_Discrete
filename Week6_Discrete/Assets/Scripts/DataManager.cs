@@ -13,6 +13,7 @@ public class DataManager : MonoBehaviour
 
     [Header("DashPoints")]
     [Space(20)]
+    public Color DashPointOneTimeOriginalColor = new Color();
     public Color DashPointOriginalColor = new Color();
     public Color DashPointCloseColor = new Color();
     public Color DashPointChosenColor = new Color();

@@ -35,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if (EnemySpawnInterval > 1.5f) EnemySpawnInterval -= 0.1f;
 
-            AccurateEnemySpawnNum += 0.3f;
+            if (EnemySpawnNumEveryTurn <= 6) AccurateEnemySpawnNum += 0.1f;
             EnemySpawnNumEveryTurn = Mathf.FloorToInt(Random.Range(AccurateEnemySpawnNum * 0.5f, AccurateEnemySpawnNum + 1));
             if (PossibilityOfEnemy2 <= 0.8f) PossibilityOfEnemy2 += 0.04f;
 

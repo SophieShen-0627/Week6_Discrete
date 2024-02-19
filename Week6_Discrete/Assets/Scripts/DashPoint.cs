@@ -25,7 +25,8 @@ public class DashPoint : MonoBehaviour
         DetectionRange = DataManager.datas.DashPointDetectRange;
         CloseColor = DataManager.datas.DashPointCloseColor;
         ChoseColor = DataManager.datas.DashPointChosenColor;
-        InitialColor = DataManager.datas.DashPointOriginalColor;
+        if (!OneTimeUse) InitialColor = DataManager.datas.DashPointOriginalColor;
+        else InitialColor = DataManager.datas.DashPointOneTimeOriginalColor;
         LoseHealthRate = DataManager.datas.LoseHealthRate;
 
         ColorRenderer = GetComponent<SpriteRenderer>();
