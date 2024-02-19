@@ -16,12 +16,14 @@ public class DataManager : MonoBehaviour
     public Color DashPointOriginalColor = new Color();
     public Color DashPointCloseColor = new Color();
     public Color DashPointChosenColor = new Color();
+    public float LoseHealthRate = 0.5f;
 
     [Header("Enemy")]
     [Space(20)]
     public float HitStopTime = 0.1f;
     public float MovingSpeed = 5f;
     public float HitStopTimeScale = 0.2f;
+    public float EnemyInitialDistanceToPoints = 2;
     private void Awake()
     {
         datas = this;

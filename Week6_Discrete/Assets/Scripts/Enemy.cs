@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject DashPoint;
+    [SerializeField] bool CarryDashPoint = false;
     private float HitStopTime = 0.1f;
     private float MovingSpeed = 5f;
 
     private float DistanceToTarget = 0;
     private Rigidbody2D rb;
+    private EnemySpawner spawner;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +21,10 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void OnEnable()
+    {
+        spawner = FindObjectOfType<EnemySpawner>();
+    }
 
     void Update()
     {
@@ -67,6 +74,9 @@ public class Enemy : MonoBehaviour
     {
         GetComponent<Collider2D>().enabled = false;
         GetComponentInChildren<SpriteRenderer>().enabled = false;
+
+        if (CarryDashPoint) Instantiate(DashPoint, transform.position, Quaternion.identity);
+        spawner.CurrentEnemies.Remove(this.gameObject);
     }
     IEnumerator DoHitStop()
     {
