@@ -72,7 +72,7 @@ public class DashPoint : MonoBehaviour
         EnemyNumAround = DetectEnemy();
 
         Health -= EnemyNumAround * LoseHealthRate * Time.deltaTime;
-        InitialColor = new Color(InitialColor.r, InitialColor.g, InitialColor.b, Health);
+        InitialColor = new Color(Health, InitialColor.g, InitialColor.b, 1);
 
         if (Health <= 0)
         {
@@ -82,8 +82,13 @@ public class DashPoint : MonoBehaviour
 
     private void DoDeath()
     {
+        GetComponentInChildren<Explosion>().DoExplosion();
+        GetComponentInChildren<Explosion>().transform.parent = null;
+
         gameObject.SetActive(false);
     }
+
+
     private int DetectEnemy()
     {
         int enemyNum = 0;

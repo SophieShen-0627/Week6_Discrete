@@ -748,7 +748,7 @@ MonoBehaviour:
   - {fileID: 7064823950758931642, guid: 36b9edbcda487c44badfca11638b041a, type: 3}
   EnemySpawnNumEveryTurn: 2
   EnemySpawnInterval: 3
-  PossibilityOfEnemy2: 0.3
+  PossibilityOfEnemy2: 0.8
 --- !u!4 &1052296987
 Transform:
   m_ObjectHideFlags: 0
@@ -935,6 +935,7 @@ MonoBehaviour:
   MovingSpeed: 2
   HitStopTimeScale: 0.6
   EnemyInitialDistanceToPoints: 2
+  ExplosionForce: 0.8
 --- !u!4 &1212738866
 Transform:
   m_ObjectHideFlags: 0
@@ -1283,6 +1284,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d505f8486bc0c9499c86b693b63aa67, type: 3}
+--- !u!1 &2011697061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2011697063}
+  - component: {fileID: 2011697062}
+  m_Layer: 0
+  m_Name: GameState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2011697062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011697061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54de7d4ae5c5e843b5b2123430514b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEnd: 0
+--- !u!4 &2011697063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011697061}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.3282225, y: -0.49307418, z: 0.06822311}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2093578309
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,6 +1412,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1733192502341047471, guid: 9d505f8486bc0c9499c86b693b63aa67, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733192502341047471, guid: 9d505f8486bc0c9499c86b693b63aa67, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733192502341047471, guid: 9d505f8486bc0c9499c86b693b63aa67, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4727524880859897773, guid: 9d505f8486bc0c9499c86b693b63aa67, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -1505,3 +1563,4 @@ SceneRoots:
   - {fileID: 818590958}
   - {fileID: 915674828}
   - {fileID: 104435356}
+  - {fileID: 2011697063}

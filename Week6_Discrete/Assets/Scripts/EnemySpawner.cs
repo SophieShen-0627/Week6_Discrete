@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] int EnemySpawnNumEveryTurn = 2;
     [SerializeField] float EnemySpawnInterval = 2;
-    [SerializeField] float PossibilityOfEnemy2 = 0.3f;
+    [SerializeField] float PossibilityOfEnemy2 = 0.8f;
 
     private GameObject[] enemies;
     private float EnemyInitialDistanceToPoints;
@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
 
             if (EnemySpawnNumEveryTurn <= 6) AccurateEnemySpawnNum += 0.1f;
             EnemySpawnNumEveryTurn = Mathf.FloorToInt(Random.Range(AccurateEnemySpawnNum * 0.5f, AccurateEnemySpawnNum + 1));
-            if (PossibilityOfEnemy2 <= 0.8f) PossibilityOfEnemy2 += 0.04f;
+            if (PossibilityOfEnemy2 >= 0.3f) PossibilityOfEnemy2 -= 0.04f;
 
             OneEnemyDie = false;
         }
@@ -69,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        yield return new WaitForSecondsRealtime(EnemySpawnInterval);
+        yield return new WaitForSeconds(EnemySpawnInterval);
         StartCoroutine(Spawn());
     }
 

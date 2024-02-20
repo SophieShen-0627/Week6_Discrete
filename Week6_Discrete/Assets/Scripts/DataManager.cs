@@ -25,6 +25,7 @@ public class DataManager : MonoBehaviour
     public float MovingSpeed = 5f;
     public float HitStopTimeScale = 0.2f;
     public float EnemyInitialDistanceToPoints = 2;
+    public float ExplosionForce = 0.1f;
     private void Awake()
     {
         datas = this;
