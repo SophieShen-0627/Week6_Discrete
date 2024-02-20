@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DashPoint : MonoBehaviour
@@ -19,6 +17,7 @@ public class DashPoint : MonoBehaviour
     private int EnemyNumAround;
     private float Health = 1;
     private float LoseHealthRate;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +36,7 @@ public class DashPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 mouseposition = Camera.main.ScreenToWorldPoint( Input.mousePosition);
+        Vector3 mouseposition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseposition.z = transform.position.z;
 
         if (!IsChosen)
@@ -87,7 +86,6 @@ public class DashPoint : MonoBehaviour
 
         gameObject.SetActive(false);
     }
-
 
     private int DetectEnemy()
     {

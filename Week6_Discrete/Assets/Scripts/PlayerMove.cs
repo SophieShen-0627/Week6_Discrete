@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -9,38 +8,45 @@ public class PlayerMove : MonoBehaviour
     public bool IsMoving = false;
 
     [SerializeField] ParticleSystem StartParticle;
-
+    [SerializeField] AudioClip moveSound;
+    private AudioSource audioSource;
 
     private void Start()
     {
         PlayerMovingSpeed = DataManager.datas.PlayerMovingSpeed;
         Target = transform.position;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         if (transform.position != Target && !IsMoving)
         {
-            StartCoroutine(Move(Target));
+            StartCoroutine(MoveTowardsTarget(Target));
             IsMoving = true;
             StartParticle.Play();
+            PlayMoveSound();
         }
     }
 
-    IEnumerator Move(Vector3 target)
+    IEnumerator MoveTowardsTarget(Vector3 target)
     {
-        yield return new WaitForEndOfFrame();
+        while (Vector3.Distance(transform.position, target) >= 0.05f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, PlayerMovingSpeed * Time.deltaTime);
+            yield return null;
+        }
 
-        if (Vector3.Distance(transform.position, target) >= 0.05f)
-        {
-            transform.position += (target - transform.position).normalized * PlayerMovingSpeed * Time.deltaTime;
-            StartCoroutine(Move(target));
-        }
-        else
-        {
-            transform.position = target;
-            IsMoving = false;
-        }
+        transform.position = target;
+        IsMoving = false;
     }
 
+    void PlayMoveSound()
+    {
+        if (moveSound != null && audioSource != null)
+        {
+            audioSource.clip = moveSound;
+            audioSource.Play();
+        }
+    }
 }

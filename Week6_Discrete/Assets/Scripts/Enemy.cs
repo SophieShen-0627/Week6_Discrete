@@ -7,12 +7,16 @@ public class Enemy : MonoBehaviour
     public GameObject DashPoint;
     [SerializeField] bool CarryDashPoint = false;
     [SerializeField] ParticleSystem DeathParticle;
+    [SerializeField] AudioClip deathSoundClip; // Serialized field for the death sound clip
+
     private float HitStopTime = 0.1f;
     private float MovingSpeed = 5f;
 
     private float DistanceToTarget = 0;
     private Rigidbody2D rb;
     private EnemySpawner spawner;
+    private AudioSource audioSource; // Audio source for death sound
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +24,7 @@ public class Enemy : MonoBehaviour
         MovingSpeed = DataManager.datas.MovingSpeed;
         GetComponent<Collider2D>().isTrigger = true;
         rb = GetComponent<Rigidbody2D>();
+        audioSource = gameObject.AddComponent<AudioSource>(); // Add AudioSource component
     }
 
     private void OnEnable()
@@ -79,10 +84,16 @@ public class Enemy : MonoBehaviour
         FindObjectOfType<CameraShake>().StartShake(0.1f, 1f, 1f);
         DeathParticle.Play();
 
+        // Play death sound
+        if (deathSoundClip != null && audioSource != null)
+        {
+            audioSource.clip = deathSoundClip;
+            audioSource.Play();
+        }
+
         if (CarryDashPoint) Instantiate(DashPoint, transform.position, Quaternion.identity);
         spawner.OneEnemyDie = true;
         spawner.CurrentEnemies.Remove(this.gameObject);
-
     }
     IEnumerator DoHitStop()
     {
